@@ -1,0 +1,249 @@
+#
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+version: '2'
+
+services:
+
+  ca.uniper.sslng.com:
+    image: hyperledger/fabric-ca
+    dns_search: .
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.uniper.sslng.com-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/3c977bcb7b7fde3b95ef37f2c5ecd465d5736902d7772dd2632c13c8f968eb41_sk
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.uniper.sslng.com-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/3c977bcb7b7fde3b95ef37f2c5ecd465d5736902d7772dd2632c13c8f968eb41_sk
+    ports:
+      - "7054:7054"
+    command: sh -c 'fabric-ca-server start -c /home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server-config.yaml -b admin:adminpw -d'
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/uniper.sslng.com/ca/:/etc/hyperledger/fabric-ca-server-config
+      - /home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server-config.yaml:/home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server-config.yaml
+      - /home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server.db:/home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server.db
+    container_name: ca_peerUniper
+
+  ca.customer.sslng.com:
+    image: hyperledger/fabric-ca
+    dns_search: .
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.customer.sslng.com-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/27c22867c6138d3abe4f3437c63d00836542bff5925c9d3ed2e1d90027413784_sk
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.customer.sslng.com-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/27c22867c6138d3abe4f3437c63d00836542bff5925c9d3ed2e1d90027413784_sk
+    ports:
+      - "8054:7054"
+    command: sh -c 'fabric-ca-server start -c /home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server-config.yaml -b admin:adminpw -d'
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/customer.sslng.com/ca/:/etc/hyperledger/fabric-ca-server-config
+      - /home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server-config.yaml:/home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server-config.yaml
+      - /home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server.db:/home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server.db
+    container_name: ca_peerCustomer
+
+
+  ca.supplier.sslng.com:
+    image: hyperledger/fabric-ca
+    dns_search: .
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.supplier.sslng.com-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/a5ccff0ebad84b5c9357e051ffb75620c1b9516ce318a21056711a5b1583c4ce_sk
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.supplier.sslng.com-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/a5ccff0ebad84b5c9357e051ffb75620c1b9516ce318a21056711a5b1583c4ce_sk
+    ports:
+      - "8055:7054"
+    command: sh -c 'fabric-ca-server start -c /home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server-config.yaml -b admin:adminpw -d'
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/supplier.sslng.com/ca/:/etc/hyperledger/fabric-ca-server-config
+      - /home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server-config.yaml:/home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server-config.yaml
+      - /home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server.db:/home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server.db
+    container_name: ca_peerSupplier
+
+
+  ca.transporter.sslng.com:
+    image: hyperledger/fabric-ca
+    dns_search: .
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.transporter.sslng.com-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/499e119798f2e550cea7e407b4030bf6e040936d4aa1f2202c57806f481f4723_sk
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.transporter.sslng.com-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/499e119798f2e550cea7e407b4030bf6e040936d4aa1f2202c57806f481f4723_sk
+    ports:
+      - "8059:7054"
+    command: sh -c 'fabric-ca-server start -c /home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server-config.yaml -b admin:adminpw -d'
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/transporter.sslng.com/ca/:/etc/hyperledger/fabric-ca-server-config
+      - /home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server-config.yaml:/home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server-config.yaml
+      - /home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server.db:/home/ubuntu/gp/src/github.com/hyperledger/fabric-ca/fabric-ca-server.db
+    container_name: ca_peerTransporter
+
+  orderer.sslng.com:
+    container_name: orderer.sslng.com
+    image: hyperledger/fabric-orderer
+    dns_search: .
+    environment:
+      - ORDERER_GENERAL_LOGLEVEL=debug
+      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+      - ORDERER_GENERAL_GENESISMETHOD=file
+      - ORDERER_GENERAL_GENESISFILE=/etc/hyperledger/configtx/genesis.block
+      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+      - ORDERER_GENERAL_LOCALMSPDIR=/etc/hyperledger/crypto/orderer/msp
+      - ORDERER_GENERAL_TLS_ENABLED=true
+      - ORDERER_GENERAL_TLS_PRIVATEKEY=/etc/hyperledger/crypto/orderer/tls/server.key
+      - ORDERER_GENERAL_TLS_CERTIFICATE=/etc/hyperledger/crypto/orderer/tls/server.crt
+      - ORDERER_GENERAL_TLS_ROOTCAS=[/etc/hyperledger/crypto/orderer/tls/ca.crt, /etc/hyperledger/crypto/peerUniper/tls/ca.crt, /etc/hyperledger/crypto/peerCustomer/tls/ca.crt, /etc/hyperledger/crypto/peerSupplier/tls/ca.crt, /etc/hyperledger/crypto/peerTransporter/tls/ca.crt]
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
+    command: orderer
+    ports:
+      - 7050:7050
+    volumes:
+        - ./channel:/etc/hyperledger/configtx
+        - ./channel/crypto-config/ordererOrganizations/sslng.com/orderers/orderer.sslng.com/:/etc/hyperledger/crypto/orderer
+        - ./channel/crypto-config/peerOrganizations/uniper.sslng.com/peers/peer0.uniper.sslng.com/:/etc/hyperledger/crypto/peerUniper
+        - ./channel/crypto-config/peerOrganizations/customer.sslng.com/peers/peer0.customer.sslng.com/:/etc/hyperledger/crypto/peerCustomer
+        - ./channel/crypto-config/peerOrganizations/supplier.sslng.com/peers/peer0.supplier.sslng.com/:/etc/hyperledger/crypto/peerSupplier
+        - ./channel/crypto-config/peerOrganizations/transporter.sslng.com/peers/peer0.transporter.sslng.com/:/etc/hyperledger/crypto/peerTransporter
+
+  peer0.uniper.sslng.com:
+    container_name: peer0.uniper.sslng.com
+    extends:
+      file:   base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.uniper.sslng.com
+      - CORE_PEER_LOCALMSPID=UniperMSP
+      - CORE_PEER_ADDRESS=peer0.uniper.sslng.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb0:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+    ports:
+      - 7051:7051
+      - 7053:7053
+    volumes:
+        - ./channel/crypto-config/peerOrganizations/uniper.sslng.com/peers/peer0.uniper.sslng.com/:/etc/hyperledger/crypto/peer
+    depends_on:
+      - orderer.sslng.com
+      - couchdb0
+
+  couchdb0:
+    container_name: couchdb0
+    image: hyperledger/fabric-couchdb
+    dns_search: .
+    # Populate the COUCHDB_USER and COUCHDB_PASSWORD to set an admin user and password
+    # for CouchDB.  This will prevent CouchDB from operating in an "Admin Party" mode.
+    environment:
+      - COUCHDB_USER=
+      - COUCHDB_PASSWORD=
+    ports:
+      - 5984:5984
+
+  peer0.customer.sslng.com:
+    container_name: peer0.customer.sslng.com
+    extends:
+      file:   base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.customer.sslng.com
+      - CORE_PEER_LOCALMSPID=CustomerMSP
+      - CORE_PEER_ADDRESS=peer0.customer.sslng.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb1:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+    ports:
+      - 7056:7051
+      - 7058:7053
+    volumes:
+        - ./channel/crypto-config/peerOrganizations/customer.sslng.com/peers/peer0.customer.sslng.com/:/etc/hyperledger/crypto/peer
+    depends_on:
+      - orderer.sslng.com
+      - couchdb1
+
+  couchdb1:
+    container_name: couchdb1
+    image: hyperledger/fabric-couchdb
+    dns_search: .
+    # Populate the COUCHDB_USER and COUCHDB_PASSWORD to set an admin user and password
+    # for CouchDB.  This will prevent CouchDB from operating in an "Admin Party" mode.
+    environment:
+      - COUCHDB_USER=
+      - COUCHDB_PASSWORD=
+    ports:
+      - 6984:5984  
+
+  peer0.supplier.sslng.com:
+    container_name: peer0.supplier.sslng.com
+    extends:
+      file:   base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.supplier.sslng.com
+      - CORE_PEER_LOCALMSPID=SupplierMSP
+      - CORE_PEER_ADDRESS=peer0.supplier.sslng.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb2:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+    ports:
+      - 8051:7051
+      - 8053:7053
+    volumes:
+        - ./channel/crypto-config/peerOrganizations/supplier.sslng.com/peers/peer0.supplier.sslng.com/:/etc/hyperledger/crypto/peer
+    depends_on:
+      - orderer.sslng.com
+      - couchdb2
+
+  couchdb2:
+    container_name: couchdb2
+    image: hyperledger/fabric-couchdb
+    dns_search: .
+    # Populate the COUCHDB_USER and COUCHDB_PASSWORD to set an admin user and password
+    # for CouchDB.  This will prevent CouchDB from operating in an "Admin Party" mode.
+    environment:
+      - COUCHDB_USER=
+      - COUCHDB_PASSWORD=
+    ports:
+      - 7984:5984    
+
+  peer0.transporter.sslng.com:
+    container_name: peer0.transporter.sslng.com
+    extends:
+      file:   base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.transporter.sslng.com
+      - CORE_PEER_LOCALMSPID=TransporterMSP
+      - CORE_PEER_ADDRESS=peer0.transporter.sslng.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb3:5984
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=
+    ports:
+      - 8056:7051
+      - 8058:7053
+    volumes:
+        - ./channel/crypto-config/peerOrganizations/transporter.sslng.com/peers/peer0.transporter.sslng.com/:/etc/hyperledger/crypto/peer
+    depends_on:
+      - orderer.sslng.com
+      - couchdb3
+
+  couchdb3:
+    container_name: couchdb3
+    image: hyperledger/fabric-couchdb
+    dns_search: .
+    # Populate the COUCHDB_USER and COUCHDB_PASSWORD to set an admin user and password
+    # for CouchDB.  This will prevent CouchDB from operating in an "Admin Party" mode.
+    environment:
+      - COUCHDB_USER=
+      - COUCHDB_PASSWORD=
+    ports:
+      - 8984:5984

@@ -1,0 +1,77 @@
+{
+	"network-config": {
+		"orderer": {
+			"url": "grpcs://localhost:7050",
+			"server-hostname": "orderer.sslng.com",
+			"tls_cacerts": "../artifacts/channel/crypto-config/ordererOrganizations/sslng.com/orderers/orderer.sslng.com/tls/ca.crt"
+		},
+		"uniper": {
+			"name": "peerUniper",
+			"mspid": "UniperMSP",
+			"ca": "https://localhost:7054",
+			"peers": {
+				"peer1": {
+					"requests": "grpcs://localhost:7051",
+					"events": "grpcs://localhost:7053",
+					"server-hostname": "peer0.uniper.sslng.com",
+					"tls_cacerts": "../artifacts/channel/crypto-config/peerOrganizations/uniper.sslng.com/peers/peer0.uniper.sslng.com/tls/ca.crt"
+				}
+			},
+			"admin": {
+				"key": "../artifacts/channel/crypto-config/peerOrganizations/uniper.sslng.com/users/Admin@uniper.sslng.com/msp/keystore",
+				"cert": "../artifacts/channel/crypto-config/peerOrganizations/uniper.sslng.com/users/Admin@uniper.sslng.com/msp/signcerts"
+			}
+		},
+		"customer": {
+			"name": "peerCustomer",
+			"mspid": "CustomerMSP",
+			"ca": "https://localhost:8054",
+			"peers": {
+				"peer1": {
+					"requests": "grpcs://localhost:7056",
+					"events": "grpcs://localhost:7058",
+					"server-hostname": "peer0.customer.sslng.com",
+					"tls_cacerts": "../artifacts/channel/crypto-config/peerOrganizations/customer.sslng.com/peers/peer0.customer.sslng.com/tls/ca.crt"
+				}
+			},
+			"admin": {
+				"key": "../artifacts/channel/crypto-config/peerOrganizations/customer.sslng.com/users/Admin@customer.sslng.com/msp/keystore",
+				"cert": "../artifacts/channel/crypto-config/peerOrganizations/customer.sslng.com/users/Admin@customer.sslng.com/msp/signcerts"
+			}
+		},
+		"supplier": {
+			"name": "peerSupplier",
+			"mspid": "SupplierMSP",
+			"ca": "https://localhost:8055",
+			"peers": {
+				"peer1": {
+					"requests": "grpcs://localhost:8051",
+					"events": "grpcs://localhost:8053",
+					"server-hostname": "peer0.supplier.sslng.com",
+					"tls_cacerts": "../artifacts/channel/crypto-config/peerOrganizations/supplier.sslng.com/peers/peer0.supplier.sslng.com/tls/ca.crt"
+				}
+			},
+			"admin": {
+				"key": "../artifacts/channel/crypto-config/peerOrganizations/supplier.sslng.com/users/Admin@supplier.sslng.com/msp/keystore",
+				"cert": "../artifacts/channel/crypto-config/peerOrganizations/supplier.sslng.com/users/Admin@supplier.sslng.com/msp/signcerts"
+			}
+		},
+		"transporter": {
+			"name": "peerTransporter",
+			"mspid": "TransporterMSP",
+			"ca": "https://localhost:8059",
+			"peers": {
+				"peer1": {
+					"requests": "grpcs://localhost:8056",
+					"events": "grpcs://localhost:8058",
+					"server-hostname": "peer0.transporter.sslng.com",
+					"tls_cacerts": "../artifacts/channel/crypto-config/peerOrganizations/transporter.sslng.com/peers/peer0.transporter.sslng.com/tls/ca.crt"
+				}
+			},
+			"admin": {
+				"key": "../artifacts/channel/crypto-config/peerOrganizations/transporter.sslng.com/users/Admin@transporter.sslng.com/msp/keystore",
+				"cert": "../artifacts/channel/crypto-config/peerOrganizations/transporter.sslng.com/users/Admin@transporter.sslng.com/msp/signcerts"
+			}
+		}
+	}
+}

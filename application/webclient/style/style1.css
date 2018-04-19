@@ -1,0 +1,296 @@
+body{
+  font-family: 'Roboto', sans-serif;
+}
+a:hover{
+  text-decoration: none;
+}
+.background{
+  background-image: url("../images/login.gif");
+  position: relative;
+  height: 700px;
+ overflow: hidden;
+ background-repeat: repeat;
+  /*background-color: GHOSTWHITE;*/
+  /*opacity:0.5;*/
+
+}
+
+.newTrade_textarea {
+ width: 100%;
+ height: 227px;
+ border-radius: 8px;
+ background-color: #ffffff ;
+ border: solid 1px #d5d5d5 ;
+ resize: none;
+ margin-top: 36px;
+}
+.line {
+ width: 100%;
+ height: 3px;
+ border: solid 1px #d5d5d5 ;
+}
+.terms_conditions {
+padding: 30px 0px;
+}
+.BarChartCSS .bar {
+  fill: steelBlue;
+}
+
+.BarChartCSS .bar:hover {
+  fill: brown;
+}
+
+.BarChartCSS .axis {
+  font: 10px sans-serif;
+}
+
+.BarChartCSS .axis path,
+.BarChartCSS .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.BarChartCSS .x.axis path {
+  display: none;
+}
+
+/* TRADE RECAP */
+.trContainer{
+  margin-top:60px;
+  background-color: #f9f9f9;
+}
+
+.trLeftCol{
+  max-width: 325px;
+  padding:0 45px;
+  background: #fff;
+}
+
+.trLeftCol > h1{
+  font-family: Helvetica;
+  font-size: 36px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000000;
+  padding-bottom: 40px;
+}
+
+ul.trSwitch{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: solid 1px #979797;
+  margin-bottom: 40px;
+}
+ul.trSwitch li{
+  display: inline-block;
+}
+
+ul.trSwitch li button{
+  padding:11px;
+  text-align: center;
+  background-color: #fff;
+  border:none;
+  outline:none;
+  width: 77px;
+  height: 40px;
+  box-sizing: border-box;
+  border-right: solid 1px #979797;
+}
+
+ul.trSwitch li:last-child button{
+  border-right: none;
+}
+
+ul.trSwitch li button.selected, ul.trSwitch li button:hover{
+  background-color: #1f497d;
+  color:#fff;
+  border:none;
+}
+
+.trFilterType{
+  padding-bottom:40px;
+}
+
+.trFilterLabel{
+  font-size: 12px;
+  font-weight: bold;
+  text-align: left;
+  color: #333333;
+  text-transform: uppercase;
+  padding-bottom: 15px;
+  display: block
+}
+
+.trFilterType.nobb{
+  border-bottom: 0;
+  padding-top: 0;
+}
+
+.trSecNav{
+  height: 85px;
+  background-color: #ffffff;
+  display:flex;
+  justify-content: flex-start;
+  align-items:center;
+  padding:25px;
+  padding-left:30px;
+  width:100%;
+}
+
+.trLink{
+  font-family: Helvetica;
+  font-size: 18px;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  text-align: left;
+  color: #545454;
+  margin-right:50px;
+  cursor: pointer
+}
+
+.trLink.selected{
+  text-decoration: none;
+  border-bottom: 2px solid #1f497d;
+}
+
+.trTableContainer h2{
+  margin-top:32px;
+  margin-left:30px;
+  margin-bottom:23px;
+  font-size: 24px;
+  color: #333333;
+}
+
+.trTableContainer h2 span {
+  display: inline-block;
+  margin-left:10px;
+  font-weight: bold;
+  color:#ccc;
+}
+
+.trTable {
+  width:calc(97% - 30px);
+  background-color: #fff;
+  margin-left:30px;
+}
+
+.trTable th {
+  text-transform: uppercase;
+  width:10%;
+  padding:15px;
+  vertical-align: top;
+ 
+}
+.trTable td {
+  padding:21px;
+  display: table-cell;
+}
+
+.trTable tr{
+  border-bottom:1px solid #d5d5d5;
+}
+.trTable tr:last-child{
+  border:none;
+}
+
+
+.statuscards{
+  display: flex;
+  justify-content: center;
+  margin:30px 0
+}
+
+.statuscards .statuscard {
+  width:170px;
+  height: 260px;
+  margin:0 25px;
+  border: solid 1px #d5d5d5;
+  border-radius:6px;
+}
+.statuscard:hover {
+  border-color:#1f497d;
+  cursor: pointer
+}
+
+
+.statuscard h3{
+  padding:5px;
+  margin:0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.statuscard h3 span{
+  display: block;
+  font-size:12px;
+  font-weight: normal;
+  padding-left:2px;
+}
+.statuscard .thumb{
+  height:106px;
+  width:100%;
+  background-color: #1f497d;
+}
+
+.statuscard .icon{ 
+  margin:0 auto;
+  width:40px;
+  height:70px;
+  text-align:center;
+  font-size:4em;
+  color: #acacac;
+}
+
+.statuscard .date {
+  font-size:11px;
+  text-align: center;
+}
+
+.statuscard.completed .icon{
+  color: green;
+}
+
+.statuscard.completed .thumb{
+  background: url('../images/ship.png') no-repeat center center;
+  background-size: cover;
+}
+
+.statuscard.pending .icon{
+  color: #acacac;
+}
+
+.statuscard.pending .thumb{
+  background: #556080 url('../images/user.png') no-repeat center -7px;
+  background-size: contain;
+}
+
+
+.statuscard.notstarted{
+  opacity: 0.6;
+}
+
+.statuscard.notstarted .thumb{
+  background: #556080 url('../images/user.png') no-repeat center -7px;
+  background-size: contain;
+}
+
+.tradeactions{
+  display:flex;
+  justify-content:flex-end
+}
+
+.tradeactions a{
+  font-size: 18px;
+  font-weight: 500;
+  text-align: right;
+  color: #1f497d;
+  display: inline-block;
+  padding:5px 20px;
+  cursor: pointer;
+}
